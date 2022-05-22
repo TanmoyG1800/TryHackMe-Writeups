@@ -1,1 +1,2 @@
-# TryHackMe-Writeups
+# TryHackMe Walkthrough and Writeups
+
