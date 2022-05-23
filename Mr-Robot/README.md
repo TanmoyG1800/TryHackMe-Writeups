@@ -1,6 +1,6 @@
 # Mr Robot
 
-Link to the room:-https://tryhackme.com/room/mrrobot
+Link to the room: https://tryhackme.com/room/mrrobot
 
 ## Let's start !!
 
