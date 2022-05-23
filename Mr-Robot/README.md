@@ -385,7 +385,7 @@ https://twitter.com/bee_sec_san
 https://github.com/HashPals/Name-That-Hash 
     
 
-c3fcd3d76192e0000000000000000000
+{REDACTED}
 
 Most Likely 
 MD5, HC: 0 JtR: raw-md5 Summary: Used for Linux Shadow files.
@@ -409,7 +409,7 @@ dynamic_39 MD2, JtR: md2 Snefru-128, JtR: snefru-128 DNSSEC(NSEC3), HC: 8300  RA
 ### Hashcat 
 
 ````````
-hashcat -m 0 c3fcd3d76192e0000000000000000000 /usr/share/wordlists/rockyou.txt --force
+hashcat -m 0 {REDACTED} /usr/share/wordlists/rockyou.txt --force
 ````````
 
 ````````
@@ -454,12 +454,12 @@ Dictionary cache hit:
 * Bytes.....: 139921507
 * Keyspace..: 14344385
 
-c3fcd3d76192e0000000000000000000:{REDIRECTED}
+{REDACTED}:{REDACTED}
                                                           
 Session..........: hashcat
 Status...........: Cracked
 Hash.Mode........: 0 (MD5)
-Hash.Target......: c3fcd3d76192e0000000000000000000
+Hash.Target......: {REDACTED}
 Time.Started.....: Fri May 20 23:20:10 2022, (0 secs)
 Time.Estimated...: Fri May 20 23:20:10 2022, (0 secs)
 Kernel.Feature...: Pure Kernel
