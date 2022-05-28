@@ -1,5 +1,7 @@
 # Bounty Hacker
 
+Link to the room: https://tryhackme.com/room/cowboyhacker
+
 ## Let's start !!
 
 First, we set an IP variable
