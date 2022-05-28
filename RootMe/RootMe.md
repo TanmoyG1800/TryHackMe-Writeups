@@ -1,12 +1,15 @@
 # RootMe 
 
+##Let's start !!
+
+First, we set an IP variable
+
 ````````
 export IP=10.10.215.168 
-
 ````````
 
-## Rustscan 
-
+### Rustscan 
+As always we start with rustscan I like its style and it instantly gives a response after discovering an open port. The drawback is that we cannot scan it for UDP.
 ````````
 rustscan $IP -- -A -sC -sV -oN nmap.txt
 
@@ -146,7 +149,7 @@ Nmap done: 1 IP address (1 host up) scanned in 25.28 seconds
 
 ````````
 
-## gobuster (HTTP 80)
+### gobuster (HTTP 80)
 
 ````````
 gobuster dir -u http://$IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,zip,js,html -t 50 | tee gobuster.log
