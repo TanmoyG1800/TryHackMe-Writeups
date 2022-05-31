@@ -1,5 +1,7 @@
 # RootMe 
 
+Link to the room: https://tryhackme.com/room/rrootme
+
 ## Let's start !!
 
 First, we set an IP variable
