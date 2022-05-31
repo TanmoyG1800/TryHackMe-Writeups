@@ -310,7 +310,7 @@ root
 \[\](remote)\[\] \[\]root@anonymous\[\]:\[\]/root\[\]$ ls
 root.txt
 \[\](remote)\[\] \[\]root@anonymous\[\]:\[\]/root\[\]$ cat root.txt
-4d930091c31a622a7ed10f27999af363
+{REDACTED}
 \[\](remote)\[\] \[\]root@anonymous\[\]:\[\]/root\[\]$ 
 
 ````````
