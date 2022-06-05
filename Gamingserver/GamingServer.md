@@ -250,7 +250,7 @@ john
 (remote) john@exploitable:/home/john$ ls
 user.txt
 (remote) john@exploitable:/home/john$ cat user.txt 
-a5c2ff8b9c2e3d4fe9d4ff2f1a5a6e7e
+{REDACTED}
 (remote) john@exploitable:/home/john$ 
 
 ````````
@@ -273,7 +273,7 @@ root@exploitable:/home/john# cd
 root@exploitable:~# ls
 root.txt
 root@exploitable:~# cat root.txt 
-2e337b8c9f3aff0c2b3e8d4e6a7c88fc
+{REDACTED}
 root@exploitable:~# 
 
 ````````
