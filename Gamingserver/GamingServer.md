@@ -226,7 +226,7 @@ Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hash
 Cost 2 (iteration count) is 1 for all loaded hashes
 Will run 6 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
-letmein          (id_rsa)     
+{REDACTED}          (id_rsa)     
 1g 0:00:00:00 DONE (2022-06-05 22:11) 50.00g/s 26400p/s 26400c/s 26400C/s teiubesc..red123
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
