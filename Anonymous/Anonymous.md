@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan -a $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
